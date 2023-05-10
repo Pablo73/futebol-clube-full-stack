@@ -17,5 +17,6 @@ COPY ./ .
 EXPOSE 3001
 # Sinalize que aplicação expõe a porta 3001
 
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["npm", "run"]
+CMD [ "dev" ]
 # Configurar os comandos para iniciar a aplicação de acordo com as boas práticas
