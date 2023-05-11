@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import db from '.';
+import sequelize from '.';
 
 export interface TeamsAtributes {
   id: number;
@@ -29,7 +29,7 @@ TeamsModel.init({
   underscored: true,
   timestamps: false,
   modelName: 'teams',
-  sequelize: db,
+  sequelize,
 });
 
 export default TeamsModel;

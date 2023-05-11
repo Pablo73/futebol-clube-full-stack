@@ -11,7 +11,7 @@ COPY package-lock.json ./
 RUN npm install
 # Instalar as dependências Node
 
-COPY ./ .
+COPY . .
 # Copiar o restante dos arquivos da aplicação para o container
 
 EXPOSE 3001
