@@ -8,7 +8,7 @@ class TeamsService {
   }
 
   public static async getById(id: number): Promise<TeamsAtributes> {
-    const teams = await TeamsModel.findOne({ where: { id } });
+    const [teams] = await TeamsModel.findAll({ where: { id } });
     if (!teams) {
       throw new NotFoundException('Team not found!');
     }

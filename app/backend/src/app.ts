@@ -18,6 +18,7 @@ class App {
 
   private routes(): void {
     this.app.use('/teams', teamsRouter);
+    // this.app.use('/login', teamsRouter);
   }
 
   private config():void {
