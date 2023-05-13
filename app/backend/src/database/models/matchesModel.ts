@@ -30,12 +30,20 @@ MatchesModel.init({
   },
   homeTeamId: {
     type: DataTypes.INTEGER,
+    references: {
+      model: 'teams',
+      key: 'id',
+    },
   },
   homeTeamGoals: {
     type: DataTypes.INTEGER,
   },
   awayTeamId: {
     type: DataTypes.INTEGER,
+    references: {
+      model: 'teams',
+      key: 'id',
+    },
   },
   awayTeamGoals: {
     type: DataTypes.INTEGER,

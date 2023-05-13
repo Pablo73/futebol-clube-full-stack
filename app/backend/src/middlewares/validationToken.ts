@@ -10,7 +10,7 @@ class ValidateToke {
     }
     try {
       Token.validateToken(authorization);
-      next();
+      return next();
     } catch (error) {
       throw new NotUnauthorizedException('Token must be a valid token');
     }
