@@ -3,6 +3,6 @@ import { MatchesController } from '../controller';
 
 const matchesRouter = Router();
 
-matchesRouter.get('/', MatchesController.getAll);
+matchesRouter.get('/', MatchesController.getAllMatches);
 
 export default matchesRouter;

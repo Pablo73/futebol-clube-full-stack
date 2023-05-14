@@ -1,5 +1,5 @@
 import TeamsController from './teams.controller';
-import UsersController from './usersController';
+import UsersController from './loginController';
 import MatchesController from './matchesController';
 
 export default TeamsController;
