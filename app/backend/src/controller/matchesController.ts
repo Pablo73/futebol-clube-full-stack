@@ -15,6 +15,16 @@ class MatchesController {
       next(error);
     }
   }
+
+  public static async MatchesFinish(req: Request, res: Response, next: NextFunction) {
+    const { id } = req.params;
+    try {
+      const matchesTrue = await MatchesServices.MatchesFinish(+id);
+      return res.status(200).json({ message: matchesTrue });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default MatchesController;

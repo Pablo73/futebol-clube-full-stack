@@ -36,6 +36,16 @@ class MatchesServices {
     });
     return allMatches;
   }
+
+  public static async MatchesFinish(idVlaue: number): Promise<string> {
+    const checkIfTrue = await MatchesModel.findOne({ where: { id: idVlaue } });
+
+    if (!checkIfTrue || checkIfTrue.inProgress !== true) {
+      throw new BadRequestException();
+    }
+    await MatchesModel.update({ inProgress: false }, { where: { id: idVlaue } });
+    return 'Finished';
+  }
 }
 
 export default MatchesServices;

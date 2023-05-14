@@ -6,8 +6,8 @@ class UsersController {
   public static async login(req: Request, res: Response, next: NextFunction) {
     const { body } = req;
     try {
-      const token = await UsersService.validPassoword(body);
-      return res.status(200).json(token);
+      const valueToken = await UsersService.validPassoword(body);
+      return res.status(200).json({ token: valueToken });
     } catch (error) {
       next(error);
     }
