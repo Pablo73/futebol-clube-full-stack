@@ -6,5 +6,6 @@ const matchesRouter = Router();
 
 matchesRouter.get('/', MatchesController.getAllMatches);
 matchesRouter.patch('/:id/finish', ValidateToke.isValid, MatchesController.MatchesFinish);
+matchesRouter.patch('/:id', ValidateToke.isValid, MatchesController.MatchesUpdateGoals);
 
 export default matchesRouter;
