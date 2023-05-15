@@ -36,6 +36,16 @@ class MatchesController {
       next(error);
     }
   }
+
+  public static async createMatches(req: Request, res: Response, next: NextFunction) {
+    const { body } = req;
+    try {
+      const newMatche = await MatchesServices.createMatches(body);
+      return res.status(201).json(newMatche);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default MatchesController;

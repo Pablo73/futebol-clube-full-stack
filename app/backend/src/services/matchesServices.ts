@@ -1,7 +1,9 @@
 import BadRequestException from '../exections/BadRequest';
-import MatchesModel, { MatchesAtributes } from '../database/models/matchesModel';
+import MatchesModel, { MatchesAtributes, MatchesCreateAtributes }
+  from '../database/models/matchesModel';
 import TeamModel from '../database/models/teamsModel';
 import { updateGoals } from '../types/typeMatches';
+import NotFoundException from '../exections/NotFound';
 
 class MatchesServices {
   public static async getAll(): Promise<MatchesAtributes[]> {
@@ -55,6 +57,16 @@ class MatchesServices {
     );
     Promise.resolve(updatedGoals);
     return 'updated Goals';
+  }
+
+  public static async createMatches(newMatche: MatchesCreateAtributes): Promise<MatchesAtributes> {
+    try {
+      const matche = await MatchesModel.create(newMatche);
+      Promise.resolve(matche);
+      return matche;
+    } catch (error) {
+      throw new NotFoundException('There is no team with such id!');
+    }
   }
 }
 

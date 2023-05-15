@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import Token from '../utils/token';
-import NotUnauthorizedException from '../exections/NotUnauthorized';
+import NotUnauthorizedException from '../exections/Unauthorized';
 
 class ValidateToke {
   public static isValid(req: Request, _res: Response, next: NextFunction): void {

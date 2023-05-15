@@ -11,7 +11,12 @@ export interface MatchesAtributes {
   inProgress: boolean;
 }
 
-export type MatchesCreateAtributes = Omit<MatchesAtributes, 'id'>;
+export type MatchesCreateAtributes = {
+  homeTeamId: number;
+  homeTeamGoals: number;
+  awayTeamId: number;
+  awayTeamGoals: number;
+};
 
 class MatchesModel extends Model<MatchesAtributes, MatchesCreateAtributes> {
   declare id: number;
@@ -58,7 +63,6 @@ MatchesModel.init({
   inProgress: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
-    allowNull: false,
   },
 
 }, {

@@ -2,7 +2,7 @@ import { compareSync } from 'bcryptjs';
 import Token from '../utils/token';
 import { LoginBody } from '../types/typeUsers';
 import UsersModel from '../database/models/userModel';
-import NotUnauthorizedException from '../exections/NotUnauthorized';
+import NotUnauthorizedException from '../exections/Unauthorized';
 
 class UsersService {
   public static async validPassoword(value: LoginBody): Promise<string> {
