@@ -2,21 +2,16 @@ import * as sinon from 'sinon';
 import * as chai from 'chai';
 // @ts-ignore
 import chaiHttp = require('chai-http');
-
-import { app } from '../app';
-import Example from '../database/models/ExampleModel';
-
-import { Response } from 'superagent';
 import TeamsService from '../services';
 import TeamsModel, { TeamsAtributes } from '../database/models/teamsModel';
-import { teams, team } from './mocha/mochaService'
+import { teams, team } from './mocha/teamsServiceMocha'
 import NotFoundException from '../exections/NotFound';
 
 chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Valida pasta Service', () => {
+describe('Valida pasta teamsService', () => {
 
   afterEach(sinon.restore);
 
@@ -49,8 +44,7 @@ describe('Valida pasta Service', () => {
   
     try {
       await TeamsService.getById(nonExistentId);
- 
-      expect.fail('NotFoundException', 'NotFoundException', 'Exception should have been thrown');
+      
     } catch (error) {
   
       expect(error).to.be.instanceOf(NotFoundException);

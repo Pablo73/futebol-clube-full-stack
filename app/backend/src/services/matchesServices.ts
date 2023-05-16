@@ -41,8 +41,7 @@ class MatchesServices {
   }
 
   public static async MatchesFinish(idVlaue: number): Promise<string> {
-    const promise = await MatchesModel.update({ inProgress: false }, { where: { id: idVlaue } });
-    Promise.resolve(promise);
+    await MatchesModel.update({ inProgress: false }, { where: { id: idVlaue } });
     return 'Finished';
   }
 
