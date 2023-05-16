@@ -4,8 +4,8 @@ import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 import MatchesModel from '../database/models/matchesModel';
 import { MatchesServices } from '../services';
-import { matches } from './mocha/matcheSericesMocha';
-import { BadRequestException } from '../exections';
+import { matches, newMatch, newMatchError } from './mocha/matcheSericesMocha';
+import { BadRequestException, NotFoundException } from '../exections';
 import TeamsModel from '../database/models/teamsModel';
 import { teams } from './mocha/teamsServiceMocha';
 
@@ -114,5 +114,31 @@ const gols = {
     
     expect(result).to.equal('updated Goals');
 });
+
+it('Testa o metodo createMatches', async () => {
+
+    const createStub = sinon.stub(MatchesModel, 'create').resolves(new MatchesModel(newMatch));
+
+    const result = await MatchesServices.createMatches(newMatch);
+
+    expect(createStub.calledOnceWith(newMatch)).to.be.true;
+    expect(result).to.deep.equal(new MatchesModel(newMatch));
+
+    });
+
+    it('testa se al tentar crear uma partida com times que não estão cadastrados gera um erro', async () => {
+    
+        sinon.stub(MatchesModel, 'create').throws();
+
+        let error: Error | undefined;
+
+        try {
+          await MatchesServices.createMatches(newMatchError);
+        } catch (error) {
+            expect(error).to.be.instanceOf(NotFoundException);
+            expect((error as NotFoundException).message).to.equal('There is no team with such id!');
+        }
+    
+      });
 
 });
