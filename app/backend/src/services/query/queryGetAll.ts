@@ -1,4 +1,4 @@
-const queryGetAll = 'SELECT TRYBE_FUTEBOL_CLUBE.teams.team_name AS name,'
+const getAll = 'SELECT TRYBE_FUTEBOL_CLUBE.teams.team_name AS name,'
 + 'CAST(SUM(points) AS UNSIGNED) AS totalPoints,'
 + 'COUNT(*) AS totalGames,'
 + 'COUNT(CASE WHEN points = 3 THEN 1 END) AS totalVictories,'
@@ -6,7 +6,7 @@ const queryGetAll = 'SELECT TRYBE_FUTEBOL_CLUBE.teams.team_name AS name,'
 + 'COUNT(CASE WHEN points = 0 THEN 1 END) AS totalLosses,'
 + 'CAST(SUM(golFavor) AS UNSIGNED) AS goalsFavor,'
 + 'CAST(SUM(golContra) AS UNSIGNED) AS goalsOwn,'
-+ 'SUM(golFavor) - SUM(golContra) AS "goalsBalance",'
++ 'CAST(SUM(golFavor) - SUM(golContra) AS SIGNED) AS goalsBalance,'
 + 'ROUND((SUM(points) / (COUNT(*) * 3) ) * 100, 2) AS "efficiency" '
 + 'FROM ('
 + 'SELECT home_team_id AS team_id,'
@@ -32,6 +32,7 @@ const queryGetAll = 'SELECT TRYBE_FUTEBOL_CLUBE.teams.team_name AS name,'
    + 'WHERE TRYBE_FUTEBOL_CLUBE.matches.in_progress = 0 '
 + ') AS points_table '
 + 'JOIN TRYBE_FUTEBOL_CLUBE.teams ON points_table.team_id = TRYBE_FUTEBOL_CLUBE.teams.id '
-+ 'GROUP BY TRYBE_FUTEBOL_CLUBE.teams.team_name;';
++ 'GROUP BY TRYBE_FUTEBOL_CLUBE.teams.team_name '
++ 'ORDER BY totalPoints DESC, totalVictories DESC, goalsBalance DESC, goalsFavor DESC;';
 
-export default queryGetAll;
+export default getAll;
