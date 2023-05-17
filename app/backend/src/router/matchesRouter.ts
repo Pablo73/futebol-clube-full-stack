@@ -11,7 +11,7 @@ matchesRouter.patch('/:id', ValidateToke.isValid, MatchesController.MatchesUpdat
 matchesRouter.post(
   '/',
   ValidateToke.isValid,
-  ValidationNewMatche.isValid,
+  ValidationNewMatche.isValids,
   MatchesController.createMatches,
 );
 

@@ -61,6 +61,7 @@ class MatchesServices {
   public static async createMatches(newMatche: MatchesCreateAtributes): Promise<MatchesAtributes> {
     try {
       const matche = await MatchesModel.create(newMatche);
+      Promise.resolve(matche);
       return matche;
     } catch (error) {
       throw new NotFoundException('There is no team with such id!');
