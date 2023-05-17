@@ -13,7 +13,7 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Valida pasta matchesServices', () => {
+describe('Valida arquivo matchesServices', () => {
 
   afterEach(sinon.restore);
 

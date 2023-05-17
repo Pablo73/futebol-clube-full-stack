@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Valida pasta teamsService', () => {
+describe('Valida arquivo teamsService', () => {
 
   afterEach(sinon.restore);
 
