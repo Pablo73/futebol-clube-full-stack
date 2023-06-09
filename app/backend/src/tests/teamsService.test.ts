@@ -25,7 +25,7 @@ describe('Valida arquivo teamsService', () => {
 
   });
 
-  it('Testa o metodo getById com retorno populado', async () => {
+  it('Testa o metodo findAll com retorno populado', async () => {
 
     const teamInstances = teams.map((team) => TeamsModel.build(team));
 

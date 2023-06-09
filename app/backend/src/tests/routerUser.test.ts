@@ -10,6 +10,8 @@ import { Response } from 'superagent';
 import { response } from 'express';
 import { NotUnauthorizedException } from '../exections';
 import ValidateToke from '../middlewares/validationToken';
+import { UsersService } from '../services';
+import { UsersController } from '../controller';
 
 chai.use(chaiHttp);
 
@@ -18,6 +20,9 @@ const { expect } = chai;
 describe('User Router', () => {
   describe('Testa get/user/role', () => {
     describe('Testa se o token é valido', () => {
+
+      afterEach(sinon.restore);
+
       it('Se o token não for informado Erro 401 com a mensagem Token not found', async () => {
         try {
         const response = await chai.request(app)
@@ -44,6 +49,27 @@ describe('User Router', () => {
       });
 
       it('Se o token for válido deve retornar a role do usuario', async () => {
+        sinon.stub(UsersService, 'getRole').resolves('SuperAdmin');
+
+        const response = await chai.request(app)
+        .get('/login/role')
+        .set('Authorization', 'token-valid');
+
+        const res = {};
+        const req = {
+          params: {},
+          body: {},
+          query: {},
+          headers: {},
+        };
+
+        res.status = sinon.stub().returns(res);
+        res.json = sinon.stub().returns();
+
+        const result = await UsersController.getRole(req, res);
+
+        expect(result).to.deep.equal({ role: 'SuperAdmin' });
+
    
       });
     })
